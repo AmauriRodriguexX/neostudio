@@ -2064,3 +2064,13 @@ input, textarea, select { font-family: inherit; font-size: 14px; color: inherit;
   transition: background 0.2s ease;
 }
 .file-clear-btn:hover { background: rgba(239,68,68,0.2); }
+
+/* ── Fila de 2 campos en el modal ── */
+.form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+@media (max-width: 520px) {
+  .form-row-2 { grid-template-columns: 1fr; }
+}
