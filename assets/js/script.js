@@ -15,25 +15,13 @@
   'use strict';
 
   /* ─────────────────────────────────────────────────────────
-     CONFIGURACIÓN — reemplaza estos valores con los tuyos
-     1. EmailJS  →  https://www.emailjs.com/
-        · Crea cuenta → conecta Gmail (neostudiocdmx@gmail.com)
-        · Crea un Service y un Template
-        · Copia Public Key, Service ID y Template ID aquí
-     2. reCAPTCHA v3  →  https://www.google.com/recaptcha/admin
-        · Registra el dominio, elige v3
-        · Copia la Site Key aquí Y en el <script> del index.html
+     CONFIGURACIÓN — un solo paso:
+     1. Ve a https://formspree.io → crea cuenta con neostudiocdmx@gmail.com
+     2. Clic en "+ New Form" → copia el ID (ej: xabcdefg)
+     3. Pégalo en FORMSPREE_ID aquí abajo y listo ✓
      ───────────────────────────────────────────────────────── */
-  const EMAILJS_PUBLIC_KEY  = 'YOUR_EMAILJS_PUBLIC_KEY';   // ← tu Public Key
-  const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';            // ← ej: service_abc123
-  const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';           // ← ej: template_xyz789
-  const RECAPTCHA_SITE_KEY  = '6Ldj3r4sAAAAAK2EKTO6CTSputCqILK9CL387Wfg';   // ← igual que en index.html
-
-  /* ── Inicializa EmailJS ── */
-  if (window.emailjs) window.emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
-  else document.addEventListener('DOMContentLoaded', () => {
-    if (window.emailjs) window.emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
-  });
+  const FORMSPREE_ID       = 'YOUR_FORMSPREE_ID';           // ← ej: xabcdefg
+  const RECAPTCHA_SITE_KEY = '6Lc_4b4sAAAAABMq_xnrbCZB0Nt2kYBZ61lLIUjq';
 
   /* ── Obtiene token de reCAPTCHA v3 ── */
   async function getRecaptchaToken(action) {
@@ -47,15 +35,19 @@
     } catch { return ''; }
   }
 
-  /* ── Envía email vía EmailJS ── */
+  /* ── Envía formulario vía Formspree ── */
   async function sendContactEmail(params) {
     const token = await getRecaptchaToken('contact');
-    return window.emailjs.send(
-      EMAILJS_SERVICE_ID,
-      EMAILJS_TEMPLATE_ID,
-      { ...params, recaptcha_token: token, to_email: 'neostudiocdmx@gmail.com' },
-      { publicKey: EMAILJS_PUBLIC_KEY }
-    );
+    const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body:    JSON.stringify({ ...params, 'g-recaptcha-response': token }),
+    });
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      throw new Error(data.error || `HTTP ${res.status}`);
+    }
+    return res.json();
   }
 
   /* ── Estado de carga en botón de submit ── */
