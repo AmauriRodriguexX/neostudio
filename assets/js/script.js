@@ -27,7 +27,7 @@
   const EMAILJS_PUBLIC_KEY  = 'YOUR_EMAILJS_PUBLIC_KEY';   // ← tu Public Key
   const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';            // ← ej: service_abc123
   const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';           // ← ej: template_xyz789
-  const RECAPTCHA_SITE_KEY  = 'YOUR_RECAPTCHA_SITE_KEY';   // ← igual que en index.html
+  const RECAPTCHA_SITE_KEY  = '6Ldj3r4sAAAAAK2EKTO6CTSputCqILK9CL387Wfg';   // ← igual que en index.html
 
   /* ── Inicializa EmailJS ── */
   if (window.emailjs) window.emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
