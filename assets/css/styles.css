@@ -1058,39 +1058,85 @@ input, textarea, select { font-family: inherit; font-size: 14px; color: inherit;
 
 .modal-form { display: flex; flex-direction: column; gap: 16px; }
 .modal-form[hidden], .modal-success[hidden] { display: none !important; }
+
+/* Fila de 2 campos — gap igual al form para coherencia */
+.form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: start; /* labels al top aunque difieran en altura */
+}
+@media (max-width: 520px) {
+  .form-row-2 { grid-template-columns: 1fr; }
+}
+
+/* Campo individual */
 .field { display: flex; flex-direction: column; gap: 6px; }
 .field label {
-  font-size: 12px; font-weight: 600;
-  color: #1f2937; letter-spacing: 0.02em;
+  font-size: 11px; font-weight: 700;
+  color: #6b7280;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 .field .required { color: #ef4444; }
-.field .hint { color: #9ca3af; font-weight: 400; font-size: 11px; }
+.field .hint { color: #9ca3af; font-weight: 400; font-size: 10px; text-transform: none; letter-spacing: 0; }
+
+/* Inputs, selects y textarea — altura y padding idénticos */
 .field input,
 .field select,
 .field textarea {
-  padding: 12px 14px;
-  border: 1px solid rgba(0,0,0,0.1);
-  border-radius: 12px;
-  background: #fff;
+  width: 100%;
+  height: 46px;                    /* altura fija para alinear todos los controles */
+  padding: 0 14px;
+  border: 1.5px solid rgba(0,0,0,0.1);
+  border-radius: 10px;
+  background: #fafafa;
+  font-family: inherit;
   font-size: 14px;
   color: #0a0a0a;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  box-sizing: border-box;
 }
+.field input::placeholder { color: #9ca3af; }
 .field input:focus,
 .field select:focus,
 .field textarea:focus {
   outline: none;
   border-color: #6366f1;
-  box-shadow: 0 0 0 3px rgba(99,102,241,0.15);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.12);
 }
-.field input.error,
-.field select.error,
-.field textarea.error {
+.field input[aria-invalid="true"],
+.field select[aria-invalid="true"],
+.field textarea[aria-invalid="true"] {
   border-color: #ef4444;
-  box-shadow: 0 0 0 3px rgba(239,68,68,0.12);
+  box-shadow: 0 0 0 3px rgba(239,68,68,0.10);
 }
-.field textarea { resize: vertical; min-height: 70px; font-family: inherit; }
-.modal-submit { margin-top: 8px; width: 100%; justify-content: center; }
+
+/* Select — quitar estilo nativo, agregar flecha custom */
+.field select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  padding-right: 36px;             /* espacio para la flecha */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+}
+.field select:focus {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236366f1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+}
+
+/* Textarea — altura propia, sin la fija de 46px */
+.field textarea {
+  height: auto;
+  padding: 12px 14px;
+  resize: vertical;
+  min-height: 80px;
+}
+
+.modal-submit { margin-top: 4px; width: 100%; justify-content: center; }
 .modal-privacy {
   margin: 4px 0 0; font-size: 11px; color: #6b7280; text-align: center;
   letter-spacing: 0.02em;
@@ -2065,12 +2111,3 @@ input, textarea, select { font-family: inherit; font-size: 14px; color: inherit;
 }
 .file-clear-btn:hover { background: rgba(239,68,68,0.2); }
 
-/* ── Fila de 2 campos en el modal ── */
-.form-row-2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-}
-@media (max-width: 520px) {
-  .form-row-2 { grid-template-columns: 1fr; }
-}
