@@ -35,24 +35,28 @@
     } catch { return ''; }
   }
 
-  /* ── Envía formulario vía Formsubmit.co (sin cuenta ni claves) ── */
-  async function sendContactEmail(params) {
+  /* ── Envía formulario vía Formsubmit.co — usa FormData para soportar adjuntos ── */
+  async function sendContactEmail(params, fileInput) {
     const token = await getRecaptchaToken('contact');
+    const fd = new FormData();
+    fd.append('_subject',           '🚀 Nuevo contacto — NEO STUDIO');
+    fd.append('_captcha',           'false');
+    fd.append('_template',          'table');
+    fd.append('name',               params.from_name  || 'Visitante');
+    fd.append('email',              params.from_email || '');
+    fd.append('Tipo de proyecto',   params.project_type);
+    fd.append('Presupuesto',        params.budget);
+    fd.append('Mensaje',            params.message);
+    fd.append('Fuente',             params.source);
+    fd.append('reCAPTCHA token',    token);
+    /* Adjunto (opcional) */
+    if (fileInput && fileInput.files && fileInput.files[0]) {
+      fd.append('attachment', fileInput.files[0]);
+    }
     const res = await fetch(`https://formsubmit.co/ajax/${CONTACT_EMAIL}`, {
       method:  'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        _subject:           '🚀 Nuevo contacto — NEO STUDIO',
-        _captcha:           'false',          // usamos nuestro propio reCAPTCHA
-        _template:          'table',          // email bien formateado
-        name:               params.from_name  || 'Visitante',
-        email:              params.from_email || '',
-        'Tipo de proyecto': params.project_type,
-        'Presupuesto':      params.budget,
-        'Mensaje':          params.message,
-        'Fuente':           params.source,
-        'reCAPTCHA token':  token,
-      }),
+      headers: { 'Accept': 'application/json' }, /* sin Content-Type → browser pone boundary */
+      body:    fd,
     });
     const data = await res.json().catch(() => { throw new Error('Sin respuesta'); });
     if (data.success !== 'true' && data.success !== true) {
@@ -384,7 +388,14 @@
         return;
       }
 
-      /* ── Envío real con EmailJS ── */
+      /* ── Validar archivo (máx 5 MB) ── */
+      const fileInput = $('#f-file');
+      if (fileInput && fileInput.files[0] && fileInput.files[0].size > 5 * 1024 * 1024) {
+        showToast('El archivo es mayor a 5 MB. Elige uno más pequeño.', 'error');
+        return;
+      }
+
+      /* ── Envío ── */
       const submitBtn = modalForm.querySelector('[type="submit"]');
       setSubmitting(submitBtn, true);
 
@@ -399,11 +410,11 @@
         budget:       budget      || 'No especificado',
         message:      message     || '(sin mensaje)',
         source:       'Modal / Briefing detallado',
-      }).then(() => {
+      }, fileInput).then(() => {
         setSubmitting(submitBtn, false);
         modalForm.hidden = true;
         if (modalSuccess) modalSuccess.hidden = false;
-        setTimeout(() => modalForm.reset(), 400);
+        setTimeout(() => { modalForm.reset(); resetFileField(); }, 400);
       }).catch((err) => {
         console.error('Form error:', err);
         setSubmitting(submitBtn, false);
@@ -416,6 +427,38 @@
       el.addEventListener('input', () => setError(el, ''));
     });
   }
+
+  /* -----------------------------------------------------
+     6b. File upload field — interacción visual
+     ----------------------------------------------------- */
+  const fileInput      = $('#f-file');
+  const fileLabel      = $('#fileUploadLabel');
+  const fileNameDisplay = $('#fileNameDisplay');
+  const fileClearBtn   = $('#fileClearBtn');
+
+  function resetFileField() {
+    if (!fileInput) return;
+    fileInput.value = '';
+    if (fileNameDisplay) fileNameDisplay.textContent = 'Seleccionar archivo';
+    if (fileLabel) fileLabel.classList.remove('has-file');
+    if (fileClearBtn) fileClearBtn.hidden = true;
+  }
+
+  if (fileInput) {
+    fileInput.addEventListener('change', () => {
+      const file = fileInput.files[0];
+      if (!file) { resetFileField(); return; }
+      if (file.size > 5 * 1024 * 1024) {
+        showToast('El archivo supera 5 MB. Elige uno más pequeño.', 'error');
+        resetFileField();
+        return;
+      }
+      if (fileNameDisplay) fileNameDisplay.textContent = file.name;
+      if (fileLabel) fileLabel.classList.add('has-file');
+      if (fileClearBtn) fileClearBtn.hidden = false;
+    });
+  }
+  if (fileClearBtn) fileClearBtn.addEventListener('click', resetFileField);
 
   /* -----------------------------------------------------
      7. Inline CTA form (hero/contact bottom)

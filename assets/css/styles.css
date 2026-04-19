@@ -2001,3 +2001,66 @@ input, textarea, select { font-family: inherit; font-size: 14px; color: inherit;
   opacity: 0 !important;
   pointer-events: none !important;
 }
+
+/* ── File upload field ─────────────────────────────────── */
+.file-input-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  opacity: 0; overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+}
+.file-upload-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.file-upload-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  padding: 11px 16px;
+  border: 1.5px dashed rgba(10,10,10,0.2);
+  border-radius: 10px;
+  background: rgba(10,10,10,0.03);
+  cursor: pointer;
+  font-size: 13px;
+  color: #6b7280;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+  user-select: none;
+}
+.file-upload-label:hover,
+.file-upload-label:focus-within {
+  border-color: #4f46e5;
+  background: rgba(79,70,229,0.04);
+  color: #4f46e5;
+}
+.file-upload-label.has-file {
+  border-color: #10b981;
+  background: rgba(16,185,129,0.05);
+  color: #059669;
+  border-style: solid;
+}
+.file-upload-label svg { flex-shrink: 0; }
+#fileNameDisplay {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 220px;
+}
+.file-clear-btn {
+  flex-shrink: 0;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: rgba(239,68,68,0.1);
+  border: none;
+  color: #ef4444;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+.file-clear-btn:hover { background: rgba(239,68,68,0.2); }
