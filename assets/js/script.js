@@ -15,12 +15,12 @@
   'use strict';
 
   /* ─────────────────────────────────────────────────────────
-     CONFIGURACIÓN — un solo paso:
-     1. Ve a https://web3forms.com/get-started
-     2. Escribe neostudiocdmx@gmail.com → te mandan la clave al correo
-     3. Pega la clave en WEB3FORMS_KEY aquí abajo y listo ✓
+     Formsubmit — sin cuenta, sin claves.
+     La 1ª vez que alguien envíe el form llegará un email de
+     confirmación a neostudiocdmx@gmail.com → solo haz clic en
+     el link y listo. Después todos los mensajes llegan directo.
      ───────────────────────────────────────────────────────── */
-  const WEB3FORMS_KEY      = 'YOUR_WEB3FORMS_ACCESS_KEY';   // ← pega aquí la clave
+  const CONTACT_EMAIL      = 'neostudiocdmx@gmail.com';
   const RECAPTCHA_SITE_KEY = '6Lc_4b4sAAAAABMq_xnrbCZB0Nt2kYBZ61lLIUjq';
 
   /* ── Obtiene token de reCAPTCHA v3 ── */
@@ -35,27 +35,29 @@
     } catch { return ''; }
   }
 
-  /* ── Envía formulario vía Web3Forms (gratis, sin cuenta) ── */
+  /* ── Envía formulario vía Formsubmit.co (sin cuenta ni claves) ── */
   async function sendContactEmail(params) {
     const token = await getRecaptchaToken('contact');
-    const res = await fetch('https://api.web3forms.com/submit', {
+    const res = await fetch(`https://formsubmit.co/ajax/${CONTACT_EMAIL}`, {
       method:  'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
-        access_key:            WEB3FORMS_KEY,
-        subject:               '🚀 Nuevo contacto — NEO STUDIO',
-        from_name:             params.from_name  || 'Visitante',
-        email:                 params.from_email || '',
-        'Tipo de proyecto':    params.project_type,
-        'Presupuesto':         params.budget,
-        'Mensaje':             params.message,
-        'Fuente':              params.source,
-        'g-recaptcha-response': token,
-        botcheck:              '',          // honeypot anti-spam
+        _subject:           '🚀 Nuevo contacto — NEO STUDIO',
+        _captcha:           'false',          // usamos nuestro propio reCAPTCHA
+        _template:          'table',          // email bien formateado
+        name:               params.from_name  || 'Visitante',
+        email:              params.from_email || '',
+        'Tipo de proyecto': params.project_type,
+        'Presupuesto':      params.budget,
+        'Mensaje':          params.message,
+        'Fuente':           params.source,
+        'reCAPTCHA token':  token,
       }),
     });
-    const data = await res.json();
-    if (!data.success) throw new Error(data.message || 'Error al enviar');
+    const data = await res.json().catch(() => { throw new Error('Sin respuesta'); });
+    if (data.success !== 'true' && data.success !== true) {
+      throw new Error(data.message || 'Error al enviar');
+    }
     return data;
   }
 
