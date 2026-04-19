@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#F8F9FA" />
+  <title>NEO STUDIO · Agencia de nueva generación</title>
+  <meta name="description" content="Fusionamos lo físico y lo digital. Experiencias inmersivas en 3D, VR y web premium para marcas que quieren ir un paso adelante." />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="NEO STUDIO · Agencia de nueva generación" />
+  <meta property="og:description" content="Fusionamos lo físico y lo digital. Experiencias inmersivas en 3D, VR y web premium." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1708979444046-71625af058d8?w=1200&q=80" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Favicon (inline SVG) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a0a0a'/%3E%3Ctext x='50' y='64' font-family='monospace' font-size='54' font-weight='700' fill='white' text-anchor='middle'%3EN%3C/text%3E%3C/svg%3E" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Spline+Sans+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- EmailJS (formulario de contacto) -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
+
+  <!-- Google reCAPTCHA v3 — reemplaza YOUR_RECAPTCHA_SITE_KEY con tu clave -->
+  <script src="https://www.google.com/recaptcha/api.js?render=YOUR_RECAPTCHA_SITE_KEY" async defer></script>
+
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <!-- Skip link for accessibility -->
+  <a class="skip-link" href="#main-content">Saltar al contenido</a>
+
+  <!-- ============================================ -->
+  <!-- ANIMATED BACKGROUND ORBS                     -->
+  <!-- ============================================ -->
+  <div class="bg-orbs" aria-hidden="true">
+    <div class="orb orb-indigo"></div>
+    <div class="orb orb-purple"></div>
+    <div class="orb orb-blue"></div>
+    <div class="orb orb-rose"></div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- STICKY TOP NAV                               -->
+  <!-- ============================================ -->
+  <header class="top-nav" id="topNav">
+    <a href="#home" class="logo-img-link" aria-label="NEO STUDIO — Inicio">
+      <img src="assets/img/logo.svg" alt="NEO STUDIO" class="logo-img" />
+    </a>
+
+    <nav class="top-links" aria-label="Navegación principal">
+      <a href="#services" data-nav>Servicios</a>
+      <a href="#projects" data-nav>Proyectos</a>
+      <a href="#vr" data-nav>3D / VR</a>
+      <a href="#contact" data-nav>Contacto</a>
+    </nav>
+
+    <button class="btn-dark btn-sm top-cta" data-open-modal aria-label="Abrir formulario de cotización">
+      Inicia tu proyecto
+      <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+    </button>
+
+    <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="drawer">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- ============================================ -->
+  <!-- MOBILE DRAWER                                -->
+  <!-- ============================================ -->
+  <div class="drawer-backdrop" id="drawerBackdrop" aria-hidden="true"></div>
+  <aside class="drawer" id="drawer" aria-hidden="true" aria-label="Menú móvil">
+    <div class="drawer-head">
+      <div class="logo-img-wrap">
+        <img src="assets/img/logo.svg" alt="NEO STUDIO" class="logo-img" />
+      </div>
+      <button class="drawer-close" id="drawerClose" aria-label="Cerrar menú">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <nav class="drawer-links" aria-label="Navegación móvil">
+      <a href="#services" data-drawer-link>Servicios <span aria-hidden="true">→</span></a>
+      <a href="#projects" data-drawer-link>Proyectos <span aria-hidden="true">→</span></a>
+      <a href="#vr" data-drawer-link>3D / VR <span aria-hidden="true">→</span></a>
+      <a href="#contact" data-drawer-link>Contacto <span aria-hidden="true">→</span></a>
+    </nav>
+    <button class="btn-dark btn-lg drawer-cta" data-open-modal>
+      Inicia tu proyecto
+      <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+    </button>
+    <p class="drawer-footnote">Respuesta en menos de 24 h · Sin compromiso</p>
+  </aside>
+
+  <!-- ============================================ -->
+  <!-- PAGE CONTENT                                 -->
+  <!-- ============================================ -->
+  <main class="page" id="main-content">
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="hero-body">
+        <!-- Left: text + CTAs -->
+        <div class="hero-left">
+          <div class="badge glass reveal-up" style="--delay: 0.2s">
+            <svg class="i" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.8L20 10l-5.1 3.7L17 20l-5-4-5 4 2.1-6.3L4 10l6.1-1.2L12 3z"/></svg>
+            <span>Donde lo físico se encuentra con lo digital</span>
+          </div>
+
+          <h1 class="hero-title" id="hero-title">
+            <span class="word-wrap"><span class="word">EXPERIENCIAS</span></span>
+            <span class="word-wrap"><span class="word">NEO STUDIO</span></span>
+            <span class="word-wrap"><span class="word">QUE MARCAN</span></span>
+            <span class="word-wrap"><span class="word">ANTES Y DESPUÉS.</span></span>
+          </h1>
+
+          <p class="hero-sub reveal-up" style="--delay: 0.8s">
+            Fusionamos lo tangible con lo inmersivo. Web premium, 3D fotorrealista y VR para marcas que entienden que cada interacción cuenta una historia.
+          </p>
+
+          <div class="hero-ctas reveal-up" style="--delay: 0.95s">
+            <button class="btn-dark btn-lg" data-open-modal>
+              Cuéntanos tu idea
+              <svg class="i arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </button>
+            <button class="btn-glass btn-lg" data-open-reel aria-label="Ver nuestro reel de proyectos">
+              <svg class="i" viewBox="0 0 24 24" fill="#374151" stroke="#374151" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              Ver reel (1:20)
+            </button>
+          </div>
+
+          <div class="mini-stats reveal-up" style="--delay: 1.1s">
+            <div><p class="ms-value" data-count="100" data-suffix="+">0</p><p class="ms-label">Proyectos entregados</p></div>
+            <div><p class="ms-value" data-count="98" data-suffix="%">0</p><p class="ms-label">Clientes satisfechos</p></div>
+            <div><p class="ms-value">5 años</p><p class="ms-label">Construyendo NEO STUDIO</p></div>
+          </div>
+        </div>
+
+        <!-- Right: 3D visual -->
+        <div class="hero-right">
+          <div class="hero-card float-y">
+            <div class="hero-card-inner">
+              <img
+                srcset="
+                  https://images.unsplash.com/photo-1708979444046-71625af058d8?w=480&q=80 480w,
+                  https://images.unsplash.com/photo-1708979444046-71625af058d8?w=768&q=80 768w,
+                  https://images.unsplash.com/photo-1708979444046-71625af058d8?w=1080&q=80 1080w"
+                sizes="(max-width: 768px) 90vw, 420px"
+                src="https://images.unsplash.com/photo-1708979444046-71625af058d8?w=1080&q=80"
+                alt="Escultura 3D abstracta de vidrio iridiscente sobre fondo degradado"
+                loading="lazy" />
+              <div class="hero-card-fade"></div>
+              <div class="hero-card-label">
+                <div class="label-inner glass">
+                  <div>
+                    <p class="hc-title">Render 3D inmersivo</p>
+                    <p class="hc-sub">Proyecto NEO · 2025</p>
+                  </div>
+                  <div class="hc-arrow" aria-hidden="true">
+                    <svg class="i" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pill-vr glass float-tilt">✦ VR READY</div>
+          <div class="dot-orb float-drift" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <!-- Scroll hint -->
+      <div class="scroll-hint" aria-hidden="true">
+        <span>Scroll</span>
+        <div class="scroll-hint-line"></div>
+      </div>
+    </section>
+
+    <!-- ===== SERVICES SECTION ===== -->
+    <section class="section services" id="services" aria-labelledby="services-title">
+      <div class="section-head reveal-up">
+        <div>
+          <p class="eyebrow">Lo que construimos</p>
+          <h2 class="section-title" id="services-title">NUESTROS<br/>SERVICIOS</h2>
+        </div>
+        <a href="#contact" class="btn-glass btn-md hide-mobile">
+          Hablemos de tu proyecto
+          <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+        </a>
+      </div>
+
+      <div class="bento">
+        <!-- Card Web -->
+        <article class="card card-sm reveal-up" style="--delay:0s; --tint:rgba(99,102,241,0.05);">
+          <div>
+            <div class="card-icon" style="background: rgba(99,102,241,0.1);">
+              <svg class="i" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <p class="tag" style="color:#6366f1;">WEB</p>
+            <h3 class="card-title">Diseño web<br/>que convierte</h3>
+          </div>
+          <div>
+            <p class="card-desc">Sites que venden. UX/UI de precisión quirúrgica para transformar visitas en clientes.</p>
+            <p class="card-meta">Desde 3 semanas</p>
+          </div>
+        </article>
+
+        <!-- Card Branding -->
+        <article class="card card-sm reveal-up" style="--delay:0.1s; --tint:rgba(236,72,153,0.05);">
+          <div>
+            <div class="card-icon" style="background: rgba(236,72,153,0.1);">
+              <svg class="i" viewBox="0 0 24 24" fill="none" stroke="#ec4899" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>
+            </div>
+            <p class="tag" style="color:#ec4899;">BRAND</p>
+            <h3 class="card-title">Branding<br/>& identidad</h3>
+          </div>
+          <div>
+            <p class="card-desc">Marcas que se sienten. Sistemas de identidad completos con alma y método.</p>
+            <p class="card-meta">Desde 4 semanas</p>
+          </div>
+        </article>
+
+        <!-- Card 3D & VR featured -->
+        <article class="card card-featured reveal-up" style="--delay:0.2s;" id="vr" aria-labelledby="vr-title">
+          <div class="deco-orb" aria-hidden="true"></div>
+          <div class="featured-inner">
+            <div>
+              <div class="featured-head">
+                <div class="card-icon" style="background: rgba(99,102,241,0.15);">
+                  <svg class="i" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                </div>
+                <span class="pill-featured">✦ DESTACADO</span>
+              </div>
+              <h3 class="card-title card-title-xl" id="vr-title">Modelado 3D & VR</h3>
+              <p class="card-desc card-desc-lg">Experiencias inmersivas que trascienden la pantalla. Recorridos virtuales, renders fotorrealistas y configuradores 3D en tiempo real.</p>
+              <p class="card-meta">Desde 6 semanas</p>
+            </div>
+            <button class="btn-indigo" data-open-modal data-project-type="3d-vr">
+              Explorar 3D & VR
+              <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+            </button>
+          </div>
+        </article>
+
+        <!-- Card SEO -->
+        <article class="card card-wide reveal-up" style="--delay:0.3s;">
+          <div class="card-icon card-icon-lg" style="background: rgba(16,185,129,0.1);">
+            <svg class="i" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+          <div>
+            <p class="tag" style="color:#10b981;">SEO</p>
+            <h3 class="card-title" style="font-size:20px;">SEO & optimización</h3>
+            <p class="card-desc">Visibilidad orgánica que compite. Estrategia técnica, contenido y autoridad que trae tráfico cualificado.</p>
+            <p class="card-meta" style="margin-top:8px;">Resultados visibles en 90 días</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== PROJECTS SECTION ===== -->
+    <section class="section projects" id="projects" aria-labelledby="projects-title">
+      <div class="reveal-up section-head-simple">
+        <p class="eyebrow">Casos reales, números reales</p>
+        <h2 class="section-title" id="projects-title">PROYECTOS<br/>DESTACADOS</h2>
+      </div>
+
+      <div class="projects-list">
+        <!-- Project 1 -->
+        <article class="project-card reveal-left" aria-labelledby="p1-title">
+          <div class="project-inner">
+            <div class="project-media">
+              <img
+                srcset="
+                  https://images.unsplash.com/photo-1625220851686-2986d12ff954?w=480&q=80 480w,
+                  https://images.unsplash.com/photo-1625220851686-2986d12ff954?w=768&q=80 768w,
+                  https://images.unsplash.com/photo-1625220851686-2986d12ff954?w=1080&q=80 1080w"
+                sizes="(max-width: 768px) 90vw, 420px"
+                src="https://images.unsplash.com/photo-1625220851686-2986d12ff954?w=1080&q=80"
+                alt="Interior de apartamento de lujo renderizado en 3D con iluminación natural"
+                loading="lazy" />
+              <div class="project-media-overlay"></div>
+              <span class="project-tag">VR · INMOBILIARIA</span>
+              <div class="project-stat">
+                <p class="ps-value">+340%</p>
+                <p class="ps-label">en cierres de venta</p>
+              </div>
+            </div>
+            <div class="project-text">
+              <div>
+                <div class="card-icon" style="background: rgba(99,102,241,0.1); width:32px; height:32px;">
+                  <svg class="i" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="15" height="15" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                </div>
+                <h3 class="project-title" id="p1-title">Recorrido virtual<br/>3D inmobiliario</h3>
+                <p class="project-desc">Experiencia VR fotorrealista para complejo residencial de lujo. El cliente recorre su apartamento antes de que exista.</p>
+                <blockquote class="project-quote">
+                  "Cerramos 12 unidades en la primera semana post-lanzamiento. Nunca habíamos visto algo así."
+                  <cite>— Directora comercial, desarrolladora en CDMX</cite>
+                </blockquote>
+              </div>
+              <div class="project-footer">
+                <div class="pill-row">
+                  <span class="pill">VR Tour</span>
+                  <span class="pill">3D Render</span>
+                  <span class="pill">Inmobiliaria</span>
+                </div>
+                <button class="round-btn" data-open-tour style="background:#6366f1; box-shadow:0 4px 16px #6366f144;" aria-label="Ver recorrido virtual 3D">
+                  <svg class="i" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project-card reveal-right" aria-labelledby="p2-title">
+          <div class="project-inner">
+            <div class="project-media">
+              <img
+                srcset="
+                  https://images.unsplash.com/photo-1627542557169-5ed71c66ed85?w=480&q=80 480w,
+                  https://images.unsplash.com/photo-1627542557169-5ed71c66ed85?w=768&q=80 768w,
+                  https://images.unsplash.com/photo-1627542557169-5ed71c66ed85?w=1080&q=80 1080w"
+                sizes="(max-width: 768px) 90vw, 420px"
+                src="https://images.unsplash.com/photo-1627542557169-5ed71c66ed85?w=1080&q=80"
+                alt="Producto premium fotografiado con estética minimal para e-commerce"
+                loading="lazy" />
+              <div class="project-media-overlay"></div>
+              <span class="project-tag">E-COMMERCE · 360°</span>
+              <div class="project-stat">
+                <p class="ps-value">+218%</p>
+                <p class="ps-label">en tasa de conversión</p>
+              </div>
+            </div>
+            <div class="project-text">
+              <div>
+                <div class="card-icon" style="background: rgba(236,72,153,0.1); width:32px; height:32px;">
+                  <svg class="i" viewBox="0 0 24 24" fill="none" stroke="#ec4899" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="15" height="15" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                </div>
+                <h3 class="project-title" id="p2-title">E-commerce con<br/>modelos 360°</h3>
+                <p class="project-desc">Tienda online premium con visualización 360° y configurador de materiales en tiempo real. El producto se explora, no se escrolea.</p>
+                <blockquote class="project-quote">
+                  "La tasa de conversión se duplicó en el primer mes. El ticket promedio subió un 40%."
+                  <cite>— Founder, marca de mobiliario en Barcelona</cite>
+                </blockquote>
+              </div>
+              <div class="project-footer">
+                <div class="pill-row">
+                  <span class="pill">360° Viewer</span>
+                  <span class="pill">E-commerce</span>
+                  <span class="pill">UX/UI</span>
+                </div>
+                <button class="round-btn" data-open-360 style="background:#ec4899; box-shadow:0 4px 16px #ec489944;" aria-label="Ver demo E-commerce 360°">
+                  <svg class="i" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="projects-footer reveal-up">
+        <p class="eyebrow" style="color:#6b7280;">¿Quieres ver más? Tenemos 100+ proyectos en nuestro portafolio.</p>
+        <a href="#contact" class="btn-glass btn-md">
+          Solicitar portafolio completo
+          <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===== VIRTUAL TOUR SECTION ===== -->
+    <section class="section vr-tour-section" id="tour" aria-labelledby="tour-title">
+      <div class="section-head reveal-up">
+        <div>
+          <p class="eyebrow">Tecnología phygital en acción</p>
+          <h2 class="section-title" id="tour-title">RECORRIDO<br/>VIRTUAL</h2>
+        </div>
+        <p class="tour-section-desc">Explora este apartamento de lujo como si estuvieras ahí. Navega entre habitaciones y descubre la experiencia NEO STUDIO.</p>
+      </div>
+
+      <div class="tour-preview reveal-up">
+        <div class="tour-preview-inner">
+          <img
+            src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1600&q=85"
+            alt="Sala de estar de apartamento de lujo con dobles alturas"
+            class="tour-preview-img" loading="lazy" />
+          <div class="tour-preview-overlay">
+            <div class="tour-overlay-top">
+              <span class="pill-featured" style="width:fit-content;">✦ DEMO INTERACTIVO</span>
+            </div>
+            <div class="tour-overlay-center">
+              <button class="tour-play-btn" data-open-tour aria-label="Iniciar recorrido virtual">
+                <div class="tour-play-circle">
+                  <svg viewBox="0 0 24 24" fill="#fff" width="28" height="28" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                </div>
+                <span>Iniciar recorrido</span>
+              </button>
+            </div>
+            <div class="tour-overlay-bottom">
+              <div class="tour-rooms-list">
+                <span class="tour-room-chip active-chip" data-room="0">Entrada</span>
+                <span class="tour-room-chip" data-room="1">Sala de estar</span>
+                <span class="tour-room-chip" data-room="2">Dormitorio</span>
+                <span class="tour-room-chip" data-room="3">Cocina</span>
+                <span class="tour-room-chip" data-room="4">Terraza</span>
+              </div>
+              <div class="tour-meta">
+                <span>5 habitaciones</span>
+                <span class="tour-dot">·</span>
+                <span>Apartamento premium</span>
+                <span class="tour-dot">·</span>
+                <span>CDMX</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== STATS SECTION ===== -->
+    <section class="section stats-section" aria-label="Resultados">
+      <div class="stats-card reveal-up">
+        <div class="stats-left">
+          <div class="stats-eyebrow">
+            <svg class="i" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            <span>RESULTADOS REALES</span>
+          </div>
+          <h3 class="stats-title">Números que<br/>hablan por sí solos.</h3>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-item" style="--d:0.2s;">
+            <p class="stat-value" style="color:#6366f1;" data-count="100" data-suffix="+">0</p>
+            <p class="stat-label">Proyectos<br/>entregados</p>
+          </div>
+          <div class="stat-item" style="--d:0.28s;">
+            <p class="stat-value" style="color:#ec4899;">5★</p>
+            <p class="stat-label">Rating<br/>promedio</p>
+          </div>
+          <div class="stat-item" style="--d:0.36s;">
+            <p class="stat-value" style="color:#10b981;" data-count="98" data-suffix="%">0</p>
+            <p class="stat-label">Clientes<br/>satisfechos</p>
+          </div>
+          <div class="stat-item" style="--d:0.44s;">
+            <p class="stat-value" style="color:#f59e0b;" data-count="3" data-suffix="x">0</p>
+            <p class="stat-label">ROI<br/>promedio</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CTA SECTION ===== -->
+    <section class="section cta-section" id="contact" aria-labelledby="cta-title">
+      <div class="cta-card reveal-up">
+        <div class="cta-orb cta-orb-1" aria-hidden="true"></div>
+        <div class="cta-orb cta-orb-2" aria-hidden="true"></div>
+        <div class="cta-inner">
+          <div class="cta-badge">
+            <svg class="i" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12" aria-hidden="true"><path d="M12 3l1.9 5.8L20 10l-5.1 3.7L17 20l-5-4-5 4 2.1-6.3L4 10l6.1-1.2L12 3z"/></svg>
+            <span>HABLEMOS DE TU PRÓXIMO PROYECTO</span>
+          </div>
+          <h2 class="cta-title" id="cta-title">TU MARCA.<br/>EN UNA<br/>NUEVA DIMENSIÓN.</h2>
+          <p class="cta-text">Cuéntanos tu visión. Te respondemos en menos de 24 horas con una propuesta inicial, sin compromiso y sin humo.</p>
+
+          <!-- Inline form (less friction than opening modal) -->
+          <form class="cta-form" id="ctaForm" novalidate>
+            <div class="cta-form-row">
+              <label class="sr-only" for="cta-email">Email</label>
+              <input type="email" id="cta-email" name="email" placeholder="tu@email.com" required autocomplete="email" />
+              <button type="submit" class="btn-dark btn-lg">
+                Enviar
+                <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+            </div>
+            <p class="cta-form-hint">O <button type="button" class="link-btn" data-open-modal>envíanos un briefing detallado →</button></p>
+            <p class="cta-form-privacy">Al enviar aceptas nuestra <a href="#privacy">política de privacidad</a>. No spam. Nunca.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================ -->
+  <!-- FOOTER                                       -->
+  <!-- ============================================ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-col footer-brand">
+        <div class="logo-img-wrap">
+          <img src="assets/img/logo.svg" alt="NEO STUDIO" class="logo-img footer-logo-img" />
+        </div>
+        <p class="footer-desc">Agencia de nueva generación. Donde lo físico se encuentra con lo digital.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Estudio</h4>
+        <ul>
+          <li><a href="#services">Servicios</a></li>
+          <li><a href="#projects">Proyectos</a></li>
+          <li><a href="#vr">3D & VR</a></li>
+          <li><a href="#contact">Contacto</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="mailto:neostudiocdmx@gmail.com">neostudiocdmx@gmail.com</a></li>
+          <li><a href="https://wa.me/525579002713" target="_blank" rel="noopener">WhatsApp · 55 7900 2713</a></li>
+          <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#privacy">Privacidad</a></li>
+          <li><a href="#terms">Términos</a></li>
+          <li><a href="#cookies">Cookies</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year">2025</span> NEO STUDIO. Hecho con cuidado en Ciudad de México, CDMX.</p>
+      <p>Diseñado y construido in-house.</p>
+    </div>
+  </footer>
+
+  <!-- ============================================ -->
+  <!-- FIXED BOTTOM NAV (mobile + desktop hybrid)   -->
+  <!-- ============================================ -->
+  <div class="bottom-nav-wrap">
+    <nav class="bottom-nav" aria-label="Navegación rápida">
+      <button class="bn-item active" data-id="home" aria-label="Ir a inicio">
+        <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span>Inicio</span>
+      </button>
+      <button class="bn-item" data-id="services" aria-label="Ir a servicios">
+        <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        <span>Servicios</span>
+      </button>
+      <button class="bn-item" data-id="projects" aria-label="Ir a proyectos">
+        <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        <span>Proyectos</span>
+      </button>
+
+      <div class="bn-divider" aria-hidden="true"></div>
+
+      <a href="https://wa.me/525579002713?text=Hola%2C%20me%20gustar%C3%ADa%20hablar%20de%20un%20proyecto%20con%20NEO%20STUDIO" target="_blank" rel="noopener" class="bn-whatsapp" aria-label="Abrir chat de WhatsApp">
+        <div class="bn-wa-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="17" height="17" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        </div>
+        <span>WhatsApp</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- CONTACT MODAL                                -->
+  <!-- ============================================ -->
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true"></div>
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+    <button class="modal-close" id="modalClose" aria-label="Cerrar formulario">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="modal-content">
+      <div class="modal-head">
+        <p class="eyebrow">Cuéntanos tu proyecto</p>
+        <h3 id="modalTitle" class="modal-title">Empecemos una<br/>conversación.</h3>
+        <p class="modal-sub">Responde 4 preguntas rápidas. Te contestamos en menos de 24 h con una propuesta inicial.</p>
+      </div>
+
+      <form class="modal-form" id="modalForm" novalidate>
+        <div class="field">
+          <label for="f-name">¿Cómo te llamas? <span class="required">*</span></label>
+          <input type="text" id="f-name" name="name" required autocomplete="name" placeholder="Ej. Carlos Mendoza" />
+        </div>
+
+        <div class="field">
+          <label for="f-email">¿Tu email de trabajo? <span class="required">*</span></label>
+          <input type="email" id="f-email" name="email" required autocomplete="email" placeholder="tu@empresa.com" />
+        </div>
+
+        <div class="field">
+          <label for="f-type">¿Qué tipo de proyecto tienes en mente?</label>
+          <select id="f-type" name="projectType">
+            <option value="">Elige una opción</option>
+            <option value="web">Diseño web</option>
+            <option value="branding">Branding & identidad</option>
+            <option value="3d-vr">Modelado 3D / VR</option>
+            <option value="seo">SEO & optimización</option>
+            <option value="otro">Otro / Mixto</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="f-budget">¿Presupuesto aproximado? <span class="hint">(nos ayuda a enfocar la propuesta)</span></label>
+          <select id="f-budget" name="budget">
+            <option value="">Prefiero no decir aún</option>
+            <option value="<5k">Menos de 5.000 €</option>
+            <option value="5-15k">5.000 € – 15.000 €</option>
+            <option value="15-50k">15.000 € – 50.000 €</option>
+            <option value=">50k">Más de 50.000 €</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="f-message">Cuéntanos más <span class="hint">(opcional)</span></label>
+          <textarea id="f-message" name="message" rows="3" placeholder="Objetivos, referencias, timing..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-dark btn-lg modal-submit">
+          Enviar mensaje
+          <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </button>
+
+        <p class="modal-privacy">Al enviar aceptas nuestra <a href="#privacy">política de privacidad</a>. No compartimos tus datos con nadie.</p>
+      </form>
+
+      <!-- Success state -->
+      <div class="modal-success" id="modalSuccess" hidden>
+        <div class="modal-success-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="48" height="48"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h3>¡Mensaje recibido!</h3>
+        <p>Revisamos tu briefing y te escribimos antes de 24 horas con una primera propuesta. Mientras tanto, puedes seguir explorando nuestro trabajo.</p>
+        <button type="button" class="btn-glass btn-lg" id="modalSuccessClose">Perfecto, gracias</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- ============================================ -->
+  <!-- VIRTUAL TOUR OVERLAY                         -->
+  <!-- ============================================ -->
+  <div class="vr-overlay" id="vrOverlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Recorrido virtual">
+    <div class="vr-scene" id="vrScene">
+
+      <!-- Panoramic background -->
+      <div class="vr-panorama" id="vrPanorama">
+        <img class="vr-bg" id="vrBg" src="" alt="" draggable="false" />
+        <div class="vr-bg-transition" id="vrBgTransition"></div>
+      </div>
+
+      <!-- Bottom gradient (separate from ::after to avoid spinner conflict) -->
+      <div class="vr-gradient" aria-hidden="true"></div>
+
+      <!-- Hotspot navigation points -->
+      <div class="vr-hotspots" id="vrHotspots"></div>
+
+      <!-- Top bar -->
+      <div class="vr-topbar">
+        <div class="vr-logo">
+          <img src="assets/img/logo.svg" alt="NEO STUDIO" style="height:28px; filter:invert(1);" />
+        </div>
+        <span class="vr-badge-top">✦ RECORRIDO VIRTUAL · DEMO</span>
+        <button class="vr-close" id="vrClose" aria-label="Cerrar recorrido virtual">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <!-- Room info -->
+      <div class="vr-info">
+        <p class="vr-room-counter" id="vrRoomCounter">1 / 5</p>
+        <h3 class="vr-room-name" id="vrRoomName">Entrada</h3>
+        <p class="vr-room-desc" id="vrRoomDesc"></p>
+      </div>
+
+      <!-- Floor plan minimap -->
+      <div class="vr-minimap" id="vrMinimap" aria-label="Planta del apartamento">
+        <p class="vr-minimap-label">PLANTA</p>
+        <div class="vr-floorplan">
+          <div class="vr-fp-room" data-fp="0" title="Entrada">
+            <span>ENT.</span>
+          </div>
+          <div class="vr-fp-room vr-fp-living" data-fp="1" title="Sala de estar">
+            <span>SALA</span>
+          </div>
+          <div class="vr-fp-room" data-fp="2" title="Dormitorio">
+            <span>DORM.</span>
+          </div>
+          <div class="vr-fp-room" data-fp="3" title="Cocina">
+            <span>COC.</span>
+          </div>
+          <div class="vr-fp-room vr-fp-terrace" data-fp="4" title="Terraza">
+            <span>TERR.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile prev/next room buttons -->
+      <div class="vr-mobile-nav" aria-label="Navegación entre habitaciones">
+        <button class="vr-nav-btn" id="vrPrevRoom" aria-label="Habitación anterior">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <span class="vr-nav-label" id="vrNavLabel">Habitación</span>
+        <button class="vr-nav-btn" id="vrNextRoom" aria-label="Habitación siguiente">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+
+      <!-- Bottom dots nav -->
+      <div class="vr-bottom">
+        <div class="vr-dots" id="vrDots" role="tablist" aria-label="Habitaciones"></div>
+        <p class="vr-drag-hint" id="vrDragHint">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" aria-hidden="true"><path d="M5 9l-3 3 3 3"/><path d="M19 9l3 3-3 3"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+          Arrastra para mirar a tu alrededor
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- 360° PRODUCT VIEWER OVERLAY                  -->
+  <!-- ============================================ -->
+  <div class="p360-overlay" id="p360Overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Demo E-commerce 360°">
+    <div class="p360-scene" id="p360Scene">
+
+      <!-- Ambient orbs -->
+      <div class="p360-orb p360-orb-1" aria-hidden="true"></div>
+      <div class="p360-orb p360-orb-2" aria-hidden="true"></div>
+
+      <!-- Top bar -->
+      <div class="p360-topbar">
+        <div class="p360-brand">
+          <span class="p360-eyebrow">CASO REAL · NEO STUDIO</span>
+          <span class="p360-title-top">E-Commerce 360°</span>
+        </div>
+        <button class="p360-close" id="p360Close" aria-label="Cerrar demo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <!-- Main layout -->
+      <div class="p360-layout">
+
+        <!-- Left: product info -->
+        <div class="p360-left">
+          <div class="p360-info-block">
+            <p class="p360-label">PROYECTO</p>
+            <h2 class="p360-product-name" id="p360ProductName">Sillón Oslo</h2>
+            <p class="p360-product-brand">Marca de mobiliario · Barcelona</p>
+          </div>
+
+          <!-- Material swatches -->
+          <div class="p360-materials">
+            <p class="p360-label">MATERIAL</p>
+            <div class="p360-swatches" role="radiogroup" aria-label="Seleccionar material">
+              <button class="p360-swatch p360-swatch-active" data-material="0" data-name="Roble natural" aria-label="Roble natural" aria-checked="true" role="radio">
+                <span class="p360-swatch-dot" style="background: linear-gradient(135deg,#c8a96e,#8b6914);"></span>
+                <span class="p360-swatch-label">Roble</span>
+              </button>
+              <button class="p360-swatch" data-material="1" data-name="Cuero negro" aria-label="Cuero negro" aria-checked="false" role="radio">
+                <span class="p360-swatch-dot" style="background: linear-gradient(135deg,#3a3a3a,#111);"></span>
+                <span class="p360-swatch-label">Negro</span>
+              </button>
+              <button class="p360-swatch" data-material="2" data-name="Terciopelo verde" aria-label="Terciopelo verde" aria-checked="false" role="radio">
+                <span class="p360-swatch-dot" style="background: linear-gradient(135deg,#4a7c59,#2d5a3d);"></span>
+                <span class="p360-swatch-label">Verde</span>
+              </button>
+              <button class="p360-swatch" data-material="3" data-name="Mármol blanco" aria-label="Mármol blanco" aria-checked="false" role="radio">
+                <span class="p360-swatch-dot" style="background: linear-gradient(135deg,#f0ebe3,#d4cfc7);"></span>
+                <span class="p360-swatch-label">Mármol</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Stats -->
+          <div class="p360-stats-grid">
+            <div class="p360-stat-card">
+              <p class="p360-stat-val" style="color:#ec4899;">+218%</p>
+              <p class="p360-stat-lbl">Tasa de<br/>conversión</p>
+            </div>
+            <div class="p360-stat-card">
+              <p class="p360-stat-val" style="color:#6366f1;">+40%</p>
+              <p class="p360-stat-lbl">Ticket<br/>promedio</p>
+            </div>
+            <div class="p360-stat-card">
+              <p class="p360-stat-val" style="color:#10b981;">−65%</p>
+              <p class="p360-stat-lbl">Tasa de<br/>devolución</p>
+            </div>
+            <div class="p360-stat-card">
+              <p class="p360-stat-val" style="color:#f59e0b;">1 mes</p>
+              <p class="p360-stat-lbl">Retorno de<br/>inversión</p>
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <button class="p360-cta" data-open-modal data-project-type="3d-vr">
+            Quiero esto para mi marca
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+
+        <!-- Right: 360° viewer -->
+        <div class="p360-viewer-wrap">
+          <!-- Three.js canvas stage -->
+          <div class="p360-stage" id="p360Stage">
+            <canvas id="p360Canvas" aria-label="Modelo 3D interactivo — arrastra para rotar"></canvas>
+
+            <!-- Loading state -->
+            <div class="p360-loading" id="p360Loading" aria-live="polite">
+              <div class="p360-loading-ring"></div>
+              <p>Cargando modelo 3D…</p>
+            </div>
+
+            <!-- Degree indicator -->
+            <div class="p360-degree" id="p360Degree" aria-hidden="true">0°</div>
+
+            <!-- Interaction hint -->
+            <div class="p360-drag-hint" id="p360DragHint" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M5 9l-3 3 3 3"/><path d="M19 9l3 3-3 3"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+              Arrastra para rotar · Scroll para zoom
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom tags -->
+      <div class="p360-tags">
+        <span class="pill">360° Viewer</span>
+        <span class="pill">Configurador de materiales</span>
+        <span class="pill">E-commerce</span>
+        <span class="pill">UX/UI premium</span>
+        <span class="pill">Barcelona</span>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
