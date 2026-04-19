@@ -20,7 +20,7 @@
      confirmación a neostudiocdmx@gmail.com → solo haz clic en
      el link y listo. Después todos los mensajes llegan directo.
      ───────────────────────────────────────────────────────── */
-  const CONTACT_EMAIL      = 'neostudiocdmx@gmail.com';
+  const CONTACT_EMAIL      = 'dfe2dc5098971819893dd335666d3565';
   const RECAPTCHA_SITE_KEY = '6Lc_4b4sAAAAABMq_xnrbCZB0Nt2kYBZ61lLIUjq';
 
   /* ── Obtiene token de reCAPTCHA v3 ── */
@@ -405,7 +405,7 @@
         if (modalSuccess) modalSuccess.hidden = false;
         setTimeout(() => modalForm.reset(), 400);
       }).catch((err) => {
-        console.error('EmailJS error:', err);
+        console.error('Form error:', err);
         setSubmitting(submitBtn, false);
         showToast('Error al enviar. Escríbenos directo a neostudiocdmx@gmail.com', 'error');
       });
@@ -451,7 +451,7 @@
         email.value = '';
         showToast('¡Gracias! Te escribimos en menos de 24 h.', 'success');
       }).catch((err) => {
-        console.error('EmailJS error:', err);
+        console.error('Form error:', err);
         setSubmitting(submitBtn, false);
         showToast('Error al enviar. Escríbenos a neostudiocdmx@gmail.com', 'error');
       });
