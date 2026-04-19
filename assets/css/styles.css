@@ -2048,6 +2048,15 @@ input, textarea, select { font-family: inherit; font-size: 14px; color: inherit;
   pointer-events: none !important;
 }
 
+
+/* ── Oculta el badge flotante de reCAPTCHA v3 en móvil
+   (permitido por Google ToS cuando se menciona en texto visible) ── */
+.grecaptcha-badge {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
 /* ── File upload field ─────────────────────────────────── */
 .file-input-hidden {
   position: absolute;
