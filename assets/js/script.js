@@ -16,11 +16,11 @@
 
   /* ─────────────────────────────────────────────────────────
      CONFIGURACIÓN — un solo paso:
-     1. Ve a https://formspree.io → crea cuenta con neostudiocdmx@gmail.com
-     2. Clic en "+ New Form" → copia el ID (ej: xabcdefg)
-     3. Pégalo en FORMSPREE_ID aquí abajo y listo ✓
+     1. Ve a https://web3forms.com/get-started
+     2. Escribe neostudiocdmx@gmail.com → te mandan la clave al correo
+     3. Pega la clave en WEB3FORMS_KEY aquí abajo y listo ✓
      ───────────────────────────────────────────────────────── */
-  const FORMSPREE_ID       = 'YOUR_FORMSPREE_ID';           // ← ej: xabcdefg
+  const WEB3FORMS_KEY      = 'YOUR_WEB3FORMS_ACCESS_KEY';   // ← pega aquí la clave
   const RECAPTCHA_SITE_KEY = '6Lc_4b4sAAAAABMq_xnrbCZB0Nt2kYBZ61lLIUjq';
 
   /* ── Obtiene token de reCAPTCHA v3 ── */
@@ -35,19 +35,28 @@
     } catch { return ''; }
   }
 
-  /* ── Envía formulario vía Formspree ── */
+  /* ── Envía formulario vía Web3Forms (gratis, sin cuenta) ── */
   async function sendContactEmail(params) {
     const token = await getRecaptchaToken('contact');
-    const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+    const res = await fetch('https://api.web3forms.com/submit', {
       method:  'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body:    JSON.stringify({ ...params, 'g-recaptcha-response': token }),
+      body: JSON.stringify({
+        access_key:            WEB3FORMS_KEY,
+        subject:               '🚀 Nuevo contacto — NEO STUDIO',
+        from_name:             params.from_name  || 'Visitante',
+        email:                 params.from_email || '',
+        'Tipo de proyecto':    params.project_type,
+        'Presupuesto':         params.budget,
+        'Mensaje':             params.message,
+        'Fuente':              params.source,
+        'g-recaptcha-response': token,
+        botcheck:              '',          // honeypot anti-spam
+      }),
     });
-    if (!res.ok) {
-      const data = await res.json().catch(() => ({}));
-      throw new Error(data.error || `HTTP ${res.status}`);
-    }
-    return res.json();
+    const data = await res.json();
+    if (!data.success) throw new Error(data.message || 'Error al enviar');
+    return data;
   }
 
   /* ── Estado de carga en botón de submit ── */
