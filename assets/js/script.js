@@ -42,7 +42,7 @@
       method:  'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
-        _subject:           '🚀 Nuevo contacto — NEO STUDIO',
+        _subject:           `🚀 ${params.from_name || 'Nuevo contacto'} — NEO STUDIO`,
         _captcha:           'false',
         _template:          'table',
         name:               params.from_name    || 'Visitante',
