@@ -658,20 +658,69 @@
   }
 
   /* -----------------------------------------------------
-     14. CTA Card Interactive Glow
+     14. CTA Card Interactive Glow — smooth lerp version
      ----------------------------------------------------- */
   const ctaCard = document.querySelector('.cta-card');
   if (ctaCard && !prefersReduced) {
+    const LERP = 0.075; // lower = slower/smoother; 0.05–0.12 is the sweet spot
+
+    const glow = {
+      // current rendered position
+      x: 0, y: 0,
+      // target (cursor) position
+      tx: 0, ty: 0,
+      // are we animating?
+      running: false,
+      // is cursor inside the card?
+      inside: false,
+    };
+
+    const tick = () => {
+      const dx = glow.tx - glow.x;
+      const dy = glow.ty - glow.y;
+
+      glow.x += dx * LERP;
+      glow.y += dy * LERP;
+
+      ctaCard.style.setProperty('--mouse-x', `${glow.x}px`);
+      ctaCard.style.setProperty('--mouse-y', `${glow.y}px`);
+
+      // Keep looping while moving meaningfully or cursor is inside
+      if (glow.inside || Math.abs(dx) > 0.3 || Math.abs(dy) > 0.3) {
+        requestAnimationFrame(tick);
+      } else {
+        glow.running = false;
+      }
+    };
+
     ctaCard.addEventListener('mousemove', (e) => {
       const rect = ctaCard.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      ctaCard.style.setProperty('--mouse-x', `${x}px`);
-      ctaCard.style.setProperty('--mouse-y', `${y}px`);
+      glow.tx = e.clientX - rect.left;
+      glow.ty = e.clientY - rect.top;
+      glow.inside = true;
+
+      if (!glow.running) {
+        // Initialise position near cursor on first entry to avoid big jump
+        if (!glow.x && !glow.y) {
+          glow.x = glow.tx;
+          glow.y = glow.ty;
+        }
+        glow.running = true;
+        requestAnimationFrame(tick);
+      }
     });
+
     ctaCard.addEventListener('mouseleave', () => {
-      ctaCard.style.setProperty('--mouse-x', `50%`);
-      ctaCard.style.setProperty('--mouse-y', `50%`);
+      glow.inside = false;
+      // Lerp back to center
+      const rect = ctaCard.getBoundingClientRect();
+      glow.tx = rect.width / 2;
+      glow.ty = rect.height / 2;
+
+      if (!glow.running) {
+        glow.running = true;
+        requestAnimationFrame(tick);
+      }
     });
   }
 
