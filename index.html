@@ -29,8 +29,51 @@
   <script src="https://www.google.com/recaptcha/api.js?render=6Lc_4b4sAAAAABMq_xnrbCZB0Nt2kYBZ61lLIUjq" async defer></script>
 
   <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="stylesheet" href="assets/css/cookie-banner.css" />
+
+  <!-- ============================================ -->
+  <!-- OPTIMIZACIONES SEO AVANZADAS                 -->
+  <!-- ============================================ -->
+  <meta name="robots" content="index, follow" />
+  
+  <!-- IMPORTANTE: Cambia "tudominio.com" por tu URL real (ej. neostudio.com) -->
+  <link rel="canonical" href="https://www.tudominio.com/" /> 
+  
+  <!-- Precarga de la imagen principal del Hero para mejorar velocidad (LCP) -->
+  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1708979444046-71625af058d8?w=1080&q=80" fetchpriority="high" />
+
+  <!-- Datos Estructurados / Schema Markup: Identifica a tu agencia ante Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "NEO STUDIO",
+    "url": "https://www.tudominio.com",
+    "logo": "https://www.tudominio.com/assets/img/logo.svg",
+    "description": "Fusionamos lo físico y lo digital. Experiencias inmersivas en 3D, VR y web premium para marcas en Ciudad de México.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Ciudad de México",
+      "addressRegion": "CDMX",
+      "addressCountry": "MX"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+52-55-7900-2713",
+      "contactType": "customer service"
+    },
+    "sameAs": [
+      "https://www.instagram.com/",
+      "https://www.linkedin.com/"
+    ]
+  }
+  </script>
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5632ZZJN" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
   <!-- Skip link for accessibility -->
   <a class="skip-link" href="#main-content">Saltar al contenido</a>
 
@@ -474,7 +517,7 @@
               </button>
             </div>
             <p class="cta-form-hint">O <button type="button" class="link-btn" data-open-modal>envíanos un briefing detallado →</button></p>
-            <p class="cta-form-privacy">Al enviar aceptas nuestra <a href="#privacy">política de privacidad</a>. Protegido por <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">reCAPTCHA</a>.</p>
+            <p class="cta-form-privacy">Al enviar aceptas nuestra <a href="javascript:void(0);" onclick="openLegal('privacy')">política de privacidad</a>. Protegido por <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">reCAPTCHA</a>.</p>
           </form>
         </div>
       </div>
@@ -508,7 +551,6 @@
         <ul>
           <li><a href="mailto:neostudiocdmx@gmail.com">neostudiocdmx@gmail.com</a></li>
           <li><a href="https://wa.me/525579002713" target="_blank" rel="noopener">WhatsApp · 55 7900 2713</a></li>
-          <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a></li>
           <li><a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a></li>
         </ul>
       </div>
@@ -516,9 +558,9 @@
       <div class="footer-col">
         <h4>Legal</h4>
         <ul>
-          <li><a href="#privacy">Privacidad</a></li>
-          <li><a href="#terms">Términos</a></li>
-          <li><a href="#cookies">Cookies</a></li>
+          <li><a href="javascript:void(0);" onclick="openLegal('privacy')">Privacidad</a></li>
+          <li><a href="javascript:void(0);" onclick="openLegal('terms')">Términos</a></li>
+          <li><a href="javascript:void(0);" onclick="openLegal('cookies')">Cookies</a></li>
         </ul>
       </div>
     </div>
@@ -623,7 +665,7 @@
           <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </button>
 
-        <p class="modal-privacy">Al enviar aceptas nuestra <a href="#privacy">política de privacidad</a>. Protegido por <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">reCAPTCHA</a>.</p>
+        <p class="modal-privacy">Al enviar aceptas nuestra <a href="javascript:void(0);" onclick="openLegal('privacy')">política de privacidad</a>. Protegido por <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">reCAPTCHA</a>.</p>
       </form>
 
       <!-- Success state -->
@@ -840,6 +882,114 @@
     </div>
   </div>
 
+  <!-- ============================================ -->
+  <!-- LEGAL MODAL                                  -->
+  <!-- ============================================ -->
+  <div class="modal" id="legalModal" role="dialog" aria-modal="true" aria-labelledby="legalTitle" aria-hidden="true" style="z-index: 1000">
+    <button class="modal-close" onclick="closeLegal()" aria-label="Cerrar legal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="modal-content" style="max-height: 80vh; overflow-y: auto;">
+      <div class="modal-head" style="margin-bottom: 24px;">
+        <p class="eyebrow">Aviso Legal</p>
+        <h3 id="legalTitle" class="modal-title" style="margin-bottom: 0;">Políticas</h3>
+      </div>
+      <div id="legalContent" style="color: #4b5563; font-size: 15px; line-height: 1.7; text-align: left;">
+        <!-- content injected here -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openLegal(type) {
+      const modal = document.getElementById('legalModal');
+      const backdrop = document.getElementById('modalBackdrop');
+      const title = document.getElementById('legalTitle');
+      const content = document.getElementById('legalContent');
+      
+      if(type === 'privacy') {
+        title.innerText = 'Aviso de Privacidad';
+        content.innerHTML = '<p style="margin-bottom: 12px;">En <strong>NEO STUDIO</strong> valoramos y respetamos tu privacidad. Toda la información personal recopilada a través de nuestros formularios (nombre, correo, mensaje) es tratada de forma confidencial y utilizada exclusivamente para ponernos en contacto contigo referente a tu proyecto o solicitud.</p><p style="margin-bottom: 12px;">No vendemos, alquilamos ni compartimos tus datos personales a terceros bajo ninguna circunstancia, garantizando la protección de tu información según las normativas vigentes.</p>';
+      } else if(type === 'terms') {
+        title.innerText = 'Términos y Condiciones';
+        content.innerHTML = '<p style="margin-bottom: 12px;">Al utilizar este sitio web, aceptas nuestros términos de uso. Los proyectos, cotizaciones y propuestas enviadas a través del formulario de contacto están sujetas a revisión previa de nuestro equipo y no constituyen un contrato vinculante hasta la firma de un acuerdo formal legalizado por ambas partes.</p><p style="margin-bottom: 12px;">Todo el contenido visual, interfaces, renders 3D y códigos mostrados en este sitio web son propiedad intelectual exclusiva de <strong>NEO STUDIO</strong> o de sus respectivos clientes y asociados. Queda prohibida su copia o distribución sin previa autorización.</p>';
+      } else if(type === 'cookies') {
+        title.innerText = 'Política de Cookies';
+        content.innerHTML = '<p style="margin-bottom: 12px;">Este sitio web utiliza cookies técnicas y analíticas esenciales para asegurar el correcto funcionamiento de las galerías iteractivas (VR/3D) y entender de forma agregada cómo interactúan los visitantes con nuestra la plataforma.</p><p style="margin-bottom: 12px;">Al continuar navegando e interactuando con nuestros visores inmersivos, aceptas implícitamente el uso de estas cookies de optimización.</p>';
+      }
+      
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      if (backdrop) {
+        backdrop.style.zIndex = '999';
+        backdrop.classList.add('open');
+        backdrop.setAttribute('aria-hidden', 'false');
+      }
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeLegal() {
+      const modal = document.getElementById('legalModal');
+      const backdrop = document.getElementById('modalBackdrop');
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      
+      // Keep backdrop if the main contact modal is open, else remove
+      const contactModal = document.getElementById('modal');
+      const isContactOpen = contactModal && contactModal.classList.contains('open');
+      if (!isContactOpen && backdrop) {
+        backdrop.classList.remove('open');
+        backdrop.setAttribute('aria-hidden', 'true');
+        backdrop.style.zIndex = '';
+      }
+      if (!isContactOpen) {
+        document.body.style.overflow = '';
+      }
+    }
+  </script>
+
+  <!-- ============================================ -->
+  <!-- COOKIE BANNER                                -->
+  <!-- ============================================ -->
+  <div class="cookie-banner" id="cookieBanner" aria-hidden="true" role="dialog" aria-label="Aviso de cookies">
+    <div class="cb-content">
+      <div class="cb-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"/><path d="M8.5 8.5v.01"/><path d="M16 12.5v.01"/><path d="M12 16v.01"/><path d="M11 12v.01"/><path d="M15 9v.01"/></svg>
+      </div>
+      <div>
+        <p class="cb-title">Usamos cookies para mejorar tu experiencia</p>
+        <p class="cb-desc">Utilizamos tecnologías propias y de terceros para analítica anónima y personalización. Lee nuestra <button type="button" class="link-btn" style="color:#6366f1; font-size:inherit; padding:0; height:auto; letter-spacing:inherit" onclick="openLegal('cookies')">política de cookies</button>.</p>
+      </div>
+    </div>
+    <div class="cb-actions">
+      <button class="btn-glass btn-sm" id="btnRejectCookies">Rechazar</button>
+      <button class="btn-dark btn-sm" id="btnAcceptCookies">Aceptar cookies</button>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- INTENT POPUP (WhatsApp CRO)                  -->
+  <!-- ============================================ -->
+  <div class="intent-popup" id="intentPopup" aria-hidden="true" role="dialog" aria-label="Sugerencia de contacto">
+    <button class="popup-close" id="intentClose" aria-label="Cerrar sugerencia">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="popup-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+    </div>
+    <div class="popup-body">
+      <h4>¿Tienes un proyecto en mente?</h4>
+      <p>Vemos que estás explorando nuestros servicios. En lugar de lidiar con formularios, platícanos tu idea directo por WhatsApp y veamos cómo aplicarle nuestra magia.</p>
+    </div>
+    <div class="popup-actions">
+      <a href="https://wa.me/525579002713?text=Hola%2C%20estaba%20viendo%20los%20servicios%20y%20me%20gustar%C3%ADa%20platicarles%20mi%20proyecto" target="_blank" rel="noopener" class="btn-whatsapp-solid" id="intentAction">
+        👉 ¡Hablemos por WhatsApp!
+      </a>
+      <button class="popup-dismiss" id="intentDismiss">No gracias, seguiré mirando</button>
+    </div>
+  </div>
+
   <script src="assets/js/script.js"></script>
+  <script src="assets/js/analytics.js"></script>
 </body>
 </html>

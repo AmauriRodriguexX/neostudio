@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# IMPORTANTE: Cambia "tudominio.com" por tu URL real (ej. neostudio.com)
+Sitemap: https://www.tudominio.com/sitemap.xml

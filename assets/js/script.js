@@ -290,6 +290,8 @@
     trigger.addEventListener('click', (e) => {
       e.preventDefault();
       const pType = trigger.getAttribute('data-project-type');
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'open_contact_modal', project_type: pType || 'general' });
       openModal(pType);
     });
   });
@@ -297,6 +299,8 @@
   // Reel button (placeholder)
   $$('[data-open-reel]').forEach((btn) => {
     btn.addEventListener('click', () => {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'click_reel' });
       showToast('Próximamente: nuestro reel en vídeo. Mientras tanto, échale un ojo a los proyectos ↓');
       const projects = document.getElementById('projects');
       if (projects) setTimeout(() => smoothScrollTo(projects), 400);
@@ -404,6 +408,8 @@
         source:       'Modal / Briefing detallado',
       }).then(() => {
         setSubmitting(submitBtn, false);
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'submit_contact_form', project_type: projectType || 'general' });
         modalForm.hidden = true;
         if (modalSuccess) modalSuccess.hidden = false;
         setTimeout(() => modalForm.reset(), 400);
@@ -451,6 +457,8 @@
         source:       'Formulario CTA rápido',
       }).then(() => {
         setSubmitting(submitBtn, false);
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'submit_cta_form' });
         email.value = '';
         showToast('¡Gracias! Te escribimos en menos de 24 h.', 'success');
       }).catch((err) => {
@@ -599,6 +607,56 @@
       { passive: true }
     );
   }
+
+  /* -----------------------------------------------------
+     13. Intent Popup (WhatsApp CRO)
+         Triggers if user spends > 8s looking at Services or Projects
+     ----------------------------------------------------- */
+  const intentPopup = document.getElementById('intentPopup');
+  if (intentPopup && !localStorage.getItem('ns_intent_closed')) {
+    let intentTimer = null;
+    let hasShownIntent = false;
+
+    const intentObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !hasShownIntent) {
+          // They are looking at services or projects, start 8s timer
+          if (!intentTimer) {
+            intentTimer = setTimeout(() => {
+              intentPopup.classList.add('show');
+              hasShownIntent = true;
+            }, 8000);
+          }
+        } else {
+          // They scrolled away before 8s, cancel timer
+          if (intentTimer && !hasShownIntent) {
+            clearTimeout(intentTimer);
+            intentTimer = null;
+          }
+        }
+      });
+    }, { threshold: 0.4 });
+
+    const servicesSec = document.getElementById('services');
+    const projectsSec = document.getElementById('projects');
+    if (servicesSec) intentObserver.observe(servicesSec);
+    if (projectsSec) intentObserver.observe(projectsSec);
+
+    // Close handlers
+    const closeIntent = () => {
+      intentPopup.classList.remove('show');
+      localStorage.setItem('ns_intent_closed', 'true');
+    };
+
+    document.getElementById('intentClose')?.addEventListener('click', closeIntent);
+    document.getElementById('intentDismiss')?.addEventListener('click', closeIntent);
+    document.getElementById('intentAction')?.addEventListener('click', () => {
+      closeIntent(); // Hide after they click it
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'click_intent_whatsapp' });
+    });
+  }
+
 })();
 
 
@@ -738,7 +796,11 @@
     stopPanLoop();
   }
 
-  openBtns.forEach((btn) => btn.addEventListener('click', () => openTour(0)));
+  openBtns.forEach((btn) => btn.addEventListener('click', () => {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'click_virtual_tour' });
+    openTour(0);
+  }));
   if (closeBtn) closeBtn.addEventListener('click', closeTour);
 
   /* ---- Keyboard: Escape + Arrow navigation ---- */
