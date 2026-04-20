@@ -1951,6 +1951,10 @@ select {
   gap: 2px;
   padding: 10px;
   pointer-events: auto;
+  max-width: 100%;
+  overflow-x: auto;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
   
   /* Entrance animation properties */
   opacity: 0;
@@ -1966,6 +1970,10 @@ select {
   border-radius: 30px;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
   transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bottom-nav::-webkit-scrollbar {
+  display: none;
 }
 
 .bn-item {
