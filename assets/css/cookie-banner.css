@@ -89,7 +89,7 @@
   bottom: 24px;
   right: 24px;
   width: 360px;
-  max-width: calc(100vw - 32px);
+  max-width: calc(100% - 32px);
   background: rgba(17, 24, 39, 0.95);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
