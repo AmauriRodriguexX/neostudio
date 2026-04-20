@@ -335,21 +335,23 @@ select {
   bottom: 0;
   width: 0;
   height: 1.5px;
-  background: #0a0a0a;
+  background: #6366f1;
   transition: width 0.25s ease;
 }
 
 .top-links a:hover {
-  color: #0a0a0a;
+  color: #6366f1;
 }
 
 .top-links a:hover::after,
-.top-links a.active::after {
+.top-links a.active::after,
+.top-links a[aria-current="page"]::after {
   width: 100%;
 }
 
-.top-links a.active {
-  color: #0a0a0a;
+.top-links a.active,
+.top-links a[aria-current="page"] {
+  color: #6366f1;
   font-weight: 600;
 }
 
