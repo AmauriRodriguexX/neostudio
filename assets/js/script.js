@@ -657,7 +657,27 @@
     });
   }
 
+  /* -----------------------------------------------------
+     14. CTA Card Interactive Glow
+     ----------------------------------------------------- */
+  const ctaCard = document.querySelector('.cta-card');
+  if (ctaCard && !prefersReduced) {
+    ctaCard.addEventListener('mousemove', (e) => {
+      const rect = ctaCard.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      ctaCard.style.setProperty('--mouse-x', `${x}px`);
+      ctaCard.style.setProperty('--mouse-y', `${y}px`);
+    });
+    ctaCard.addEventListener('mouseleave', () => {
+      ctaCard.style.setProperty('--mouse-x', `50%`);
+      ctaCard.style.setProperty('--mouse-y', `50%`);
+    });
+  }
+
+
 })();
+
 
 
 /* =======================================================

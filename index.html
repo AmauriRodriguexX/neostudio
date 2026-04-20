@@ -312,7 +312,7 @@
 
       <div class="projects-list">
         <!-- Project 1 -->
-        <article class="project-card reveal-left" aria-labelledby="p1-title">
+        <article class="project-card reveal-left" aria-labelledby="p1-title" data-dark-bg>
           <div class="project-inner">
             <div class="project-media">
               <img
@@ -358,7 +358,7 @@
         </article>
 
         <!-- Project 2 -->
-        <article class="project-card reveal-right" aria-labelledby="p2-title">
+        <article class="project-card reveal-right" aria-labelledby="p2-title" data-dark-bg>
           <div class="project-inner">
             <div class="project-media">
               <img
@@ -506,19 +506,15 @@
           <h2 class="cta-title" id="cta-title">TU MARCA.<br/>EN UNA<br/>NUEVA DIMENSIÓN.</h2>
           <p class="cta-text">Cuéntanos tu visión. Te respondemos en menos de 24 horas con una propuesta inicial, sin compromiso y sin humo.</p>
 
-          <!-- Inline form (less friction than opening modal) -->
-          <form class="cta-form" id="ctaForm" novalidate>
-            <div class="cta-form-row">
-              <label class="sr-only" for="cta-email">Email</label>
-              <input type="email" id="cta-email" name="email" placeholder="tu@email.com" required autocomplete="email" />
-              <button type="submit" class="btn-dark btn-lg">
-                Enviar
-                <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-              </button>
-            </div>
-            <p class="cta-form-hint">O <button type="button" class="link-btn" data-open-modal>envíanos un briefing detallado →</button></p>
-            <p class="cta-form-privacy">Al enviar aceptas nuestra <a href="javascript:void(0);" onclick="openLegal('privacy')">política de privacidad</a>. Protegido por <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">reCAPTCHA</a>.</p>
-          </form>
+          <!-- CTA Action -->
+          <div style="margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 12px; margin-bottom: 24px;">
+            <button type="button" class="btn-dark btn-lg" data-open-modal>
+              Empezar mi nuevo proyecto
+              <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </button>
+            <p class="cta-form-hint" style="margin:0;">Sin compromiso. Propuesta y cotización inicial en menos de 24h.</p>
+          </div>
+          <p class="cta-form-privacy">Al contactarnos aceptas nuestra <a href="javascript:void(0);" onclick="openLegal('privacy')">política de privacidad</a>. Protegido por <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">reCAPTCHA</a>.</p>
         </div>
       </div>
     </section>
@@ -527,7 +523,7 @@
   <!-- ============================================ -->
   <!-- FOOTER                                       -->
   <!-- ============================================ -->
-  <footer class="footer">
+  <footer class="footer" data-dark-bg>
     <div class="footer-inner">
       <div class="footer-col footer-brand">
         <div class="logo-img-wrap">
